@@ -1,0 +1,16 @@
+@use './../../scss/base/variables' as *;
+
+.toolbar {
+    height: 100dvh;
+    width: 48px;
+    background-color: $color-primary;
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+        & > * {
+            padding-block: 20px;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+:root {
+    --size: 20px;
+}
+.icon {
+    height: var(--size);
+    width: var(--size);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &--small {
+        --size: 20px;
+    }
+    &--medium {
+        --size: 24px;
+    }
+    &--large {
+        --size: 32px;
+    }
+}
