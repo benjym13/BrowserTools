@@ -1,37 +1,76 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from '../Button/Button'
 import { Icon } from '../Icon/Icon'
 import './ToolBar.scss'
-
 export const ToolBar:React.FC = () => {
+    const [visibleContainers, setVisibleContainers] = useState<{ [key: string]: boolean }>({});
+    const handleClick = (key: string) => {
+        setVisibleContainers(prevState => ({
+            ...prevState = {},
+          [key]: !prevState[key] //; Alterna el estado del contenedor específico;
+        }));
+        console.log(visibleContainers)
+    };
     return(
         <div className="toolbar">
             <div className="toolbar__container">
                 <div className="toolbar__main-tools">
-                    <Button icon={true}>
-                        <Icon size='medium'>
+                    <div className="button__layout">
+                        <Button icon={true} onClick={() => handleClick('container1')} id='container-1'>
+                            <Icon size='medium'>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2 4.22222C2 3.63285 2.23413 3.06762 2.65087 2.65087C3.06762 2.23413 3.63285 2 4.22222 2H19.7778C20.3671 2 20.9324 2.23413 21.3491 2.65087C21.7659 3.06762 22 3.63285 22 4.22222V19.7778C22 20.3671 21.7659 20.9324 21.3491 21.3491C20.9324 21.7659 20.3671 22 19.7778 22H4.22222C3.63285 22 3.06762 21.7659 2.65087 21.3491C2.23413 20.9324 2 20.3671 2 19.7778V4.22222ZM19.7778 4.22222H4.22222V7.55556H19.7778V4.22222ZM4.22222 19.7778V9.77778H8.66667V19.7778H4.22222ZM10.8889 19.7778H19.7778V9.77778H10.8889V19.7778Z" fill="white"/>
+                                </svg>
+                            </Icon>
+                        </Button>
+                        {visibleContainers['container1'] && 
+                            <div className="form__container">
+                                <div className="title-button">
+                                    <p className="title" style={{color: 'white'}} >Layout 1</p>
+                                    <Button icon={false} label='run'></Button>
+                                </div>
+                                <div className="container">
+
+                                </div>
+                                <div className="settings"></div>
+                            </div>
+                        }
+                    </div>
+                    <div className="button__grid">
+                        <Button icon={true} onClick={() => handleClick('container2')}  id='container-2'>
+                            <Icon size='medium'>
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M2 4.22222C2 3.63285 2.23413 3.06762 2.65087 2.65087C3.06762 2.23413 3.63285 2 4.22222 2H19.7778C20.3671 2 20.9324 2.23413 21.3491 2.65087C21.7659 3.06762 22 3.63285 22 4.22222V19.7778C22 20.3671 21.7659 20.9324 21.3491 21.3491C20.9324 21.7659 20.3671 22 19.7778 22H4.22222C3.63285 22 3.06762 21.7659 2.65087 21.3491C2.23413 20.9324 2 20.3671 2 19.7778V4.22222ZM19.7778 4.22222H4.22222V7.55556H19.7778V4.22222ZM4.22222 19.7778V9.77778H8.66667V19.7778H4.22222ZM10.8889 19.7778H19.7778V9.77778H10.8889V19.7778Z" fill="white"/>
+                                <path d="M10 4V8H14V4H10ZM16 4V8H20V4H16ZM16 10V14H20V10H16ZM16 16V20H20V16H16ZM14 20V16H10V20H14ZM8 20V16H4V20H8ZM8 14V10H4V14H8ZM8 8V4H4V8H8ZM10 14H14V10H10V14ZM4 2H20C20.5304 2 21.0391 2.21071 21.4142 2.58579C21.7893 2.96086 22 3.46957 22 4V20C22 20.5304 21.7893 21.0391 21.4142 21.4142C21.0391 21.7893 20.5304 22 20 22H4C2.92 22 2 21.1 2 20V4C2 3.46957 2.21071 2.96086 2.58579 2.58579C2.96086 2.21071 3.46957 2 4 2Z" fill="white"/>
                             </svg>
-                        </Icon>
-                    </Button>
-                    <Button icon={true}>
-                        <Icon size='medium'>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 4V8H14V4H10ZM16 4V8H20V4H16ZM16 10V14H20V10H16ZM16 16V20H20V16H16ZM14 20V16H10V20H14ZM8 20V16H4V20H8ZM8 14V10H4V14H8ZM8 8V4H4V8H8ZM10 14H14V10H10V14ZM4 2H20C20.5304 2 21.0391 2.21071 21.4142 2.58579C21.7893 2.96086 22 3.46957 22 4V20C22 20.5304 21.7893 21.0391 21.4142 21.4142C21.0391 21.7893 20.5304 22 20 22H4C2.92 22 2 21.1 2 20V4C2 3.46957 2.21071 2.96086 2.58579 2.58579C2.96086 2.21071 3.46957 2 4 2Z" fill="white"/>
-                        </svg>
-                        </Icon>
-                    </Button>
+                            </Icon>
+                        </Button>
+                        {visibleContainers['container2'] &&
+                            <div className="form__container">
+                                <div className="title-button">
+                                    <p className="title">Layout 2</p>
+                                    <Button icon={false} label='run'></Button>
+                                </div>
+                                <div className="container">
+                                    
+                                </div>
+                                <div className="settings"></div>
+                            </div>
+                        }
+                    </div>
                 </div>
                 {/* GITHUB */}
                 <div className="toolbar__github">
-                    <Button icon={true}>
-                        <Icon size='medium'>
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2.24225C10.6868 2.24225 9.38642 2.50091 8.17317 3.00345C6.95991 3.506 5.85752 4.24259 4.92893 5.17118C3.05357 7.04654 2 9.59008 2 12.2422C2 16.6622 4.87 20.4122 8.84 21.7422C9.34 21.8222 9.5 21.5122 9.5 21.2422V19.5522C6.73 20.1522 6.14 18.2122 6.14 18.2122C5.68 17.0522 5.03 16.7422 5.03 16.7422C4.12 16.1222 5.1 16.1422 5.1 16.1422C6.1 16.2122 6.63 17.1722 6.63 17.1722C7.5 18.6922 8.97 18.2422 9.54 18.0022C9.63 17.3522 9.89 16.9122 10.17 16.6622C7.95 16.4122 5.62 15.5522 5.62 11.7422C5.62 10.6322 6 9.74225 6.65 9.03225C6.55 8.78225 6.2 7.74225 6.75 6.39225C6.75 6.39225 7.59 6.12225 9.5 7.41225C10.29 7.19225 11.15 7.08225 12 7.08225C12.85 7.08225 13.71 7.19225 14.5 7.41225C16.41 6.12225 17.25 6.39225 17.25 6.39225C17.8 7.74225 17.45 8.78225 17.35 9.03225C18 9.74225 18.38 10.6322 18.38 11.7422C18.38 15.5622 16.04 16.4022 13.81 16.6522C14.17 16.9622 14.5 17.5722 14.5 18.5022V21.2422C14.5 21.5122 14.66 21.8322 15.17 21.7422C19.14 20.4022 22 16.6622 22 12.2422C22 10.929 21.7413 9.62867 21.2388 8.41541C20.7362 7.20216 19.9997 6.09977 19.0711 5.17118C18.1425 4.24259 17.0401 3.506 15.8268 3.00345C14.6136 2.50091 13.3132 2.24225 12 2.24225Z" fill="white"/>
-                            </svg>
-                        </Icon>
-                    </Button>
+                    {/* CREATE LINK COMPONENT */}
+                    <a href="https://github.com/benjym13/BrowserTools" target='_blank'>
+                        <div className='icon-text'>
+                            <Icon size='medium'>
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2.24225C10.6868 2.24225 9.38642 2.50091 8.17317 3.00345C6.95991 3.506 5.85752 4.24259 4.92893 5.17118C3.05357 7.04654 2 9.59008 2 12.2422C2 16.6622 4.87 20.4122 8.84 21.7422C9.34 21.8222 9.5 21.5122 9.5 21.2422V19.5522C6.73 20.1522 6.14 18.2122 6.14 18.2122C5.68 17.0522 5.03 16.7422 5.03 16.7422C4.12 16.1222 5.1 16.1422 5.1 16.1422C6.1 16.2122 6.63 17.1722 6.63 17.1722C7.5 18.6922 8.97 18.2422 9.54 18.0022C9.63 17.3522 9.89 16.9122 10.17 16.6622C7.95 16.4122 5.62 15.5522 5.62 11.7422C5.62 10.6322 6 9.74225 6.65 9.03225C6.55 8.78225 6.2 7.74225 6.75 6.39225C6.75 6.39225 7.59 6.12225 9.5 7.41225C10.29 7.19225 11.15 7.08225 12 7.08225C12.85 7.08225 13.71 7.19225 14.5 7.41225C16.41 6.12225 17.25 6.39225 17.25 6.39225C17.8 7.74225 17.45 8.78225 17.35 9.03225C18 9.74225 18.38 10.6322 18.38 11.7422C18.38 15.5622 16.04 16.4022 13.81 16.6522C14.17 16.9622 14.5 17.5722 14.5 18.5022V21.2422C14.5 21.5122 14.66 21.8322 15.17 21.7422C19.14 20.4022 22 16.6622 22 12.2422C22 10.929 21.7413 9.62867 21.2388 8.41541C20.7362 7.20216 19.9997 6.09977 19.0711 5.17118C18.1425 4.24259 17.0401 3.506 15.8268 3.00345C14.6136 2.50091 13.3132 2.24225 12 2.24225Z" fill="white"/>
+                                </svg>
+                            </Icon>
+                            <span>v.1.0.0</span>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

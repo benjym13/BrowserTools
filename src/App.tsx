@@ -1,6 +1,5 @@
 import './App.scss'
 import { ToolBar } from './components/toolBar/ToolBar'
-import { type Button } from './types/types'
 
 
 

@@ -1,3 +1,4 @@
+@use './../../scss/base/variables' as *;
 .button {
     display: inline-block;
     border: none;
@@ -15,5 +16,11 @@
     -moz-appearance: none;
     &--icon {
         padding: 12px;
+        background-color: $color-button-primary;
+        @media(hover:hover) {
+            &:hover {
+                background-color: $color-button-primary--hover;
+            }
+        }
     }
 }
